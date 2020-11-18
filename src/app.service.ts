@@ -8,7 +8,9 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async handleImage(file) {
+  async handleImage(file: any) {
+    var FormData = require('form-data');
+
     const filePath =
       '/home/captainm3/work/nest-image-uploader' + `/${file.path}`;
 
@@ -21,15 +23,9 @@ export class AppService {
 
       const data = imageData.toString();
 
-      // console.log(data);
-
       const formData = new FormData();
 
       formData.append('image', data);
-
-      // , {
-      //   filepath: filePath,
-      // }
 
       console.log(formData);
 
@@ -55,6 +51,6 @@ export class AppService {
       //   });
     });
 
-    console.log(file);
+    return file;
   }
 }

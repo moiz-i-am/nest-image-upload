@@ -20,10 +20,8 @@ export class AppController {
   @Post()
   @UseInterceptors(FileInterceptor('image'))
   async uploadImage(@UploadedFile() file) {
-    setTimeout(async () => {
-      console.log('upload file is==> ', await file);
-
-      return await this.appService.handleImage(file);
-    }, 5000);
+    // setTimeout(async () => {
+    return await this.appService.handleImage(file);
+    // }, 5000);
   }
 }
