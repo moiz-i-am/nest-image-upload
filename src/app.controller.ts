@@ -2,10 +2,10 @@ import {
   Controller,
   Get,
   Post,
-  UploadedFile,
+  UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FilesInterceptor } from '@nestjs/platform-express';
 import { AppService } from './app.service';
 
 @Controller()
@@ -18,10 +18,8 @@ export class AppController {
   }
 
   @Post()
-  @UseInterceptors(FileInterceptor('image'))
-  async uploadImage(@UploadedFile() file) {
-    // setTimeout(async () => {
-    return await this.appService.handleImage(file);
-    // }, 5000);
+  @UseInterceptors(FilesInterceptor('images'))
+  async uploadImage(@UploadedFiles() files) {
+    return await this.appService.handleImage(files);
   }
 }

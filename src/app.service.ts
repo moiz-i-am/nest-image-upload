@@ -8,32 +8,34 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async handleImage(file: any) {
+  async handleImage(files: any) {
     var FormData = require('form-data');
 
-    const filePath =
-      '/home/captainm3/work/nest-image-uploader' + `/${file.path}`;
+    files.map((file) => {
+      const filePath =
+        '/home/captainm3/work/nest-image-uploader' + `/${file.path}`;
 
-    console.log(filePath);
+      console.log(filePath);
 
-    readFile(filePath, (err, imageData) => {
-      if (err) {
-        throw err;
-      }
+      readFile(filePath, (err, imageData) => {
+        if (err) {
+          throw err;
+        }
 
-      const data = imageData.toString();
+        const data = imageData.toString();
 
-      const formData = new FormData();
+        const formData = new FormData();
 
-      formData.append('image', data);
+        formData.append('image', data);
 
-      console.log(formData);
+        console.log(formData);
 
-      setTimeout(() => {
-        unlink(filePath, () => {
-          console.log('file is deleted');
-        });
-      }, 5000);
+        setTimeout(() => {
+          unlink(filePath, () => {
+            console.log('file is deleted');
+          });
+        }, 5000);
+      });
 
       // axios({
       //   method: 'post',
@@ -51,6 +53,6 @@ export class AppService {
       //   });
     });
 
-    return file;
+    return files;
   }
 }
