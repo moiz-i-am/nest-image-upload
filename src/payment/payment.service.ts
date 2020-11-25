@@ -9,8 +9,6 @@ export class PaymentService {
   constructor(@InjectStripe() private readonly stripe: Stripe) {}
 
   async create(createPaymentDto: CreatePaymentDto) {
-    console.log(createPaymentDto);
-
     try {
       const paymentIntent = await this.stripe.paymentIntents.create({
         amount: createPaymentDto.price,

@@ -15,7 +15,6 @@ import { PaymentService } from './payment.service';
 
 @Controller('payments')
 export class PaymentController {
-  private payment: Payment;
   constructor(private readonly paymentService: PaymentService) {}
 
   @Get()
